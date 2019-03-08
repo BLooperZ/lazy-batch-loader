@@ -1,15 +1,14 @@
 import React from 'react'
-import './App.css'
 
 import LazyBatchLoader from './components/LazyBatchLoader'
 
 const ListRenderer = ({ items }) => (
-    <>
-        { items.map((item, idx) => <p key={idx}>{item}</p>) }
-    </>
+    <ol>
+        { items.map((item, idx) => <li key={idx}>item #{item}</li>) }
+    </ol>
 )
 
-const LazyListRenderer = LazyBatchLoader({ batchSize: 15, interval: 1000 })(ListRenderer)
+const LazyListRenderer = LazyBatchLoader({ batchSize: 20, interval: 1000 })(ListRenderer)
 
 const App = () => (
     <div className="App">
