@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 const LazyBatchLoader = ({ batchSize = 1, propName = 'items' }) => (
     InnerComponent => (
-        ({ [propName]: items = [], manualRefresh = false, ...rest }) => {
+        ({ [propName]: items = [], ...rest }) => {
             // Load initial batch so it will be rendered immediately
             const [loadedItems, setLoadedItems] = useState(() => items.slice(0, batchSize))
 
