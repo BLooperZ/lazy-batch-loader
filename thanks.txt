@@ -1,0 +1,8 @@
+React Team @facebook
+docs: react-hook
+
+Dan abramov:
+https://overreacted.io/how-are-function-components-different-from-classes/
+
+Bojan Aleksic:
+https://itnext.io/handling-large-lists-and-tables-in-react-238397854625
