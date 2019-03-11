@@ -1,7 +1,7 @@
 React Team @facebook
 docs: react-hook
 
-Dan abramov:
+Dan Abramov:
 https://overreacted.io/how-are-function-components-different-from-classes/
 
 Bojan Aleksic:
