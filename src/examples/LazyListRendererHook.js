@@ -3,7 +3,7 @@ import React from 'react'
 import { useLazyLoader } from '../lib'
 
 const LazyListRendererHook = ({ items }) => {
-    const [loadedItems,] = useLazyLoader(items, { batchSize: 5})
+    const loadedItems = useLazyLoader(items, { batchSize: 5})
 
     return (
         <>

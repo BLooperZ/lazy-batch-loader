@@ -7,22 +7,20 @@ const useLazyLoader = (items = [], { batchSize = 1 }) => {
 
     const loadNextBatch = prevItems => items.slice(0, prevItems.length + batchSize)
 
-    const loadMoreItems = () => {
-        setLoadedItems(loadNextBatch)
-    }
-
     // Load more items asynchonously
-    useEffect(loadMoreItems, [loadedItems.length, items])
+    useEffect(() => {
+        setLoadedItems(loadNextBatch)
+    }, [loadedItems.length, items])
 
-    // Return only the items which have been loaded + function to force loading more items
-    return [loadedItems, loadMoreItems]
+    // Return only the items which have been loaded
+    return loadedItems
 }
 
 const LazyBatchLoader = ({ batchSize = 1, propName = 'items' }) => (
     InnerComponent => (
         ({ [propName]: items = [], ...rest }) => {
 
-            const [loadedItems,]  = useLazyLoader(items, { batchSize })
+            const loadedItems = useLazyLoader(items, { batchSize })
 
             // Return the inner component with the items which have been loaded only
             return <InnerComponent { ...rest } { ...{ [propName]: loadedItems } } />
