@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SimpleListRenderer = ({ items }) => (
+const SimpleListRenderer = ({ items = [] }) => (
     <>
         { `# of loaded items: ${ items.length }` }
         <ol>
