@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-// import LazyListRenderer from './LazyListRendererHOC'
-import LazyListRenderer from './LazyListRendererHook'
+import LazyListRenderer from './LazyListRendererHOC'
+// import LazyListRenderer from './LazyListRendererHook'
 
 const addMoreItems = items => items.concat(Array.from({ length: 100 }, (x, idx) => items.length + idx + 1))
 const mapItems = items => items.map(item => item + 1)
