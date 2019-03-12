@@ -1,17 +1,7 @@
 import React, { useState } from 'react'
 
-import { LazyBatchLoader } from '../lib'
-
-const ListRenderer = ({ items }) => (
-    <>
-        { `# of loaded items: ${ items.length }` }
-        <ol>
-            { items.map((item, idx) => <li key={idx}>item #{item}</li>) }
-        </ol>
-    </>
-)
-
-const LazyListRenderer = LazyBatchLoader({ batchSize: 5 })(ListRenderer)
+// import LazyListRenderer from './LazyListRendererHOC'
+import LazyListRenderer from './LazyListRendererHook'
 
 const addMoreItems = items => items.concat(Array.from({ length: 100 }, (x, idx) => items.length + idx + 1))
 const mapItems = items => items.map(item => item + 1)

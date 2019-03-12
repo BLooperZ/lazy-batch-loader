@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react'
 
+const useLazyLoader = (items = [], { batchSize = 1 }) => {
+
+    // Load initial batch so it will be rendered immediately
+    const [loadedItems, setLoadedItems] = useState(() => items.slice(0, batchSize))
+
+    const loadNextBatch = prevItems => items.slice(0, prevItems.length + batchSize)
+
+    const loadMoreItems = () => {
+        setLoadedItems(loadNextBatch)
+    }
+
+    // Load more items asynchonously
+    useEffect(loadMoreItems, [loadedItems.length, items])
+
+    // Return only the items which have been loaded + function to force loading more items
+    return [loadedItems, loadMoreItems]
+}
+
 const LazyBatchLoader = ({ batchSize = 1, propName = 'items' }) => (
     InnerComponent => (
         ({ [propName]: items = [], ...rest }) => {
-            // Load initial batch so it will be rendered immediately
-            const [loadedItems, setLoadedItems] = useState(() => items.slice(0, batchSize))
 
-            const loadMoreItems = prevItems => items.slice(0, prevItems.length + batchSize)
-
-            // Load more items asynchonously
-            useEffect(() => {
-                setLoadedItems(loadMoreItems)
-            }, [loadedItems.length, items])
+            const [loadedItems,]  = useLazyLoader(items, { batchSize })
 
             // Return the inner component with the items which have been loaded only
             return <InnerComponent { ...rest } { ...{ [propName]: loadedItems } } />
@@ -19,4 +30,4 @@ const LazyBatchLoader = ({ batchSize = 1, propName = 'items' }) => (
     )
 )
 
-export default LazyBatchLoader
+export { LazyBatchLoader as default, useLazyLoader }

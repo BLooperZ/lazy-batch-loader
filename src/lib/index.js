@@ -1,3 +1,3 @@
-import LazyBatchLoader from './components/LazyBatchLoader'
+import LazyBatchLoader, { useLazyLoader } from './components/LazyBatchLoader'
 
-export { LazyBatchLoader }
+export { LazyBatchLoader, useLazyLoader }
